@@ -3,61 +3,130 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>歐爸｜操盤手 × 內容創作者</title>
-<meta name="description" content="歐爸｜投資思維 × 社群電商 × 個人品牌經營">
+<title>歐爸｜操盤手 × 社群電商 × 內容創作</title>
+<meta name="description" content="歐爸｜操盤手 / 社群電商經營 / 內容創作。用投資思維打造現金流，用內容創造影響力。">
 <style>
-body{
-margin:0;
-font-family:-apple-system,BlinkMacSystemFont,"Noto Sans TC","Microsoft JhengHei",sans-serif;
-background:linear-gradient(135deg,#0f1117,#000);
-color:white;
-display:flex;
-justify-content:center;
-align-items:center;
-height:100vh;
-text-align:center;
-}
-.container{
-max-width:520px;
-padding:40px;
-}
-h1{
-font-size:36px;
-margin-bottom:12px;
-}
-p{
-color:#bbb;
-line-height:1.8;
-}
-.btn{
-display:inline-block;
-margin-top:30px;
-padding:14px 28px;
-border-radius:50px;
-background:linear-gradient(45deg,#d4af37,#f7d774);
-color:black;
-font-weight:bold;
-text-decoration:none;
-transition:0.3s;
-}
-.btn:hover{
-transform:scale(1.05);
-}
+  :root{
+    --bg1:#0f1117;
+    --bg2:#000;
+    --gold:#d4af37;
+    --gold2:#f7d774;
+    --text:#ffffff;
+    --muted:#b9b9b9;
+    --card:rgba(255,255,255,.06);
+    --line:rgba(255,255,255,.12);
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0;
+    font-family:-apple-system,BlinkMacSystemFont,"Noto Sans TC","Microsoft JhengHei",sans-serif;
+    background:
+      radial-gradient(900px 500px at 15% 10%, rgba(212,175,55,.18), transparent 60%),
+      radial-gradient(900px 500px at 85% 15%, rgba(247,215,116,.10), transparent 60%),
+      linear-gradient(135deg,var(--bg1),var(--bg2));
+    color:var(--text);
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    padding:28px 16px;
+  }
+  .container{
+    width:min(620px, 100%);
+    padding:34px 26px;
+    border-radius:20px;
+    border:1px solid var(--line);
+    background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+    backdrop-filter: blur(10px);
+  }
+  h1{
+    font-size:34px;
+    margin:0 0 10px;
+    letter-spacing:.3px;
+  }
+  p{
+    margin:0;
+    color:var(--muted);
+    line-height:1.85;
+    font-size:15px;
+  }
+  .tags{
+    display:flex;
+    gap:10px;
+    justify-content:center;
+    flex-wrap:wrap;
+    margin:18px 0 6px;
+  }
+  .tag{
+    padding:8px 12px;
+    border-radius:999px;
+    border:1px solid rgba(212,175,55,.28);
+    background: rgba(212,175,55,.08);
+    color: rgba(247,215,116,.95);
+    font-size:13px;
+  }
+  .btnRow{
+    display:flex;
+    gap:12px;
+    justify-content:center;
+    flex-wrap:wrap;
+    margin-top:24px;
+  }
+  .btn{
+    display:inline-block;
+    padding:14px 22px;
+    border-radius:999px;
+    font-weight:800;
+    text-decoration:none;
+    transition:.25s;
+    border:1px solid transparent;
+  }
+  .btn.primary{
+    background:linear-gradient(45deg,var(--gold),var(--gold2));
+    color:#111;
+  }
+  .btn.secondary{
+    background:transparent;
+    color:var(--gold2);
+    border-color: rgba(212,175,55,.55);
+  }
+  .btn:hover{transform: translateY(-1px) scale(1.02)}
+  .footer{
+    margin-top:18px;
+    color: rgba(255,255,255,.55);
+    font-size:12px;
+  }
 </style>
 </head>
 <body>
-<div class="container">
-<h1>歐爸</h1>
-<p>
-操盤手 × 社群電商經營者<br>
-用投資思維打造現金流<br>
-用內容創造影響力
-</p>
+  <div class="container">
+    <h1>歐爸｜操盤手 × 社群電商</h1>
+    <p>
+      用投資思維打造現金流，用內容創造影響力。<br>
+      想合作、想交流、想更快找到方向，直接點下面。
+    </p>
 
-<a class="btn" href="https://instagram.com/cocobye2003" target="_blank">
-👉 進入我的 Instagram
-</a>
+    <div class="tags">
+      <div class="tag">風險先行</div>
+      <div class="tag">系統經營</div>
+      <div class="tag">內容導流</div>
+    </div>
 
-</div>
+    <div class="btnRow">
+      <a class="btn primary" href="https://instagram.com/cocobye2003" target="_blank" rel="noopener">
+        👉 進入我的 IG
+      </a>
+      <a class="btn secondary" href="https://line.me/ti/p/~你的LINEID" target="_blank" rel="noopener">
+        ＋ 加 LINE（更快回覆）
+      </a>
+    </div>
+
+    <div class="footer">© <span id="y"></span> 歐爸｜All rights reserved.</div>
+  </div>
+
+  <script>
+    document.getElementById("y").textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
