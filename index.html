@@ -177,6 +177,146 @@
     font-size:12px;
     display:flex; justify-content:space-between; gap:10px; flex-wrap:wrap;
   }
+  /* === Gallery V2 (Black & Gold) === */
+.gallery-v2{
+  margin-top:20px;
+  display:grid;
+  grid-template-columns:repeat(auto-fit, minmax(200px, 1fr));
+  gap:16px;
+}
+.gcard{
+  border-radius:18px;
+  overflow:hidden;
+  border:1px solid rgba(255,255,255,.12);
+  background: rgba(255,255,255,.04);
+  box-shadow: 0 18px 60px rgba(0,0,0,.45);
+  position:relative;
+  cursor:pointer;
+  transform: translateY(0);
+  transition: .25s ease;
+}
+.gcard::before{
+  content:"";
+  position:absolute;
+  inset:-2px;
+  background: radial-gradient(600px 220px at 20% 0%, rgba(212,175,55,.22), transparent 55%);
+  pointer-events:none;
+}
+.gcard::after{
+  content:"";
+  position:absolute;
+  inset:-40%;
+  background: linear-gradient(120deg, transparent 35%, rgba(247,215,116,.22), transparent 65%);
+  transform: translateX(-35%) rotate(12deg);
+  opacity:0;
+  transition: .55s ease;
+  pointer-events:none;
+}
+.gcard:hover{
+  transform: translateY(-2px);
+  border-color: rgba(212,175,55,.55);
+}
+.gcard:hover::after{
+  opacity:1;
+  transform: translateX(35%) rotate(12deg);
+}
+
+.gthumb{
+  aspect-ratio: 1/1;
+  width:100%;
+  overflow:hidden;
+  position:relative;
+}
+.gthumb img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  transform: scale(1.01);
+  transition: transform .45s ease;
+  display:block;
+}
+.gcard:hover .gthumb img{
+  transform: scale(1.09);
+}
+
+.gmeta{
+  padding:12px 12px 14px;
+  border-top:1px solid rgba(255,255,255,.08);
+}
+.gtitle{
+  margin:0;
+  font-weight:1000;
+  font-size:14px;
+  letter-spacing:.2px;
+  color: rgba(247,215,116,.95);
+}
+.gdesc{
+  margin:6px 0 0;
+  color: rgba(255,255,255,.68);
+  font-size:12.5px;
+  line-height:1.55;
+}
+
+/* === Lightbox === */
+.lightbox{
+  position:fixed;
+  inset:0;
+  display:none;
+  place-items:center;
+  background: rgba(0,0,0,.72);
+  backdrop-filter: blur(10px);
+  z-index:9999;
+  padding:18px;
+}
+.lightbox.show{display:grid;}
+.lb-panel{
+  width:min(980px, 100%);
+  border-radius:18px;
+  border:1px solid rgba(255,255,255,.14);
+  background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+  box-shadow: 0 18px 80px rgba(0,0,0,.65);
+  overflow:hidden;
+}
+.lb-top{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:10px;
+  padding:12px 14px;
+  border-bottom:1px solid rgba(255,255,255,.10);
+}
+.lb-top .lb-text{
+  display:flex; flex-direction:column; gap:3px;
+}
+.lb-top .lb-title{
+  font-weight:1000; font-size:14px; color: rgba(247,215,116,.95);
+}
+.lb-top .lb-desc{
+  font-size:12.5px; color: rgba(255,255,255,.68);
+}
+.lb-close{
+  border:1px solid rgba(255,255,255,.14);
+  background: rgba(255,255,255,.04);
+  color: rgba(255,255,255,.9);
+  border-radius:12px;
+  padding:9px 12px;
+  cursor:pointer;
+  transition:.18s ease;
+  font-weight:900;
+}
+.lb-close:hover{transform: translateY(-1px); border-color: rgba(212,175,55,.55);}
+.lb-imgwrap{
+  background: rgba(0,0,0,.35);
+  display:grid;
+  place-items:center;
+}
+.lb-img{
+  width:100%;
+  height:auto;
+  max-height: 72vh;
+  object-fit:contain;
+  display:block;
+}
 </style>
 </head>
 
@@ -294,19 +434,31 @@
     </div>
 
     <section class="stats">
-    <div style="margin-top:20px; display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:16px;">
-  
-  <div style="aspect-ratio:1/1; overflow:hidden; border-radius:16px; border:1px solid rgba(255,255,255,.12);">
-    <img src="post1.jpg" style="width:100%; height:100%; object-fit:cover; transition:0.4s;">
+<div class="gallery-v2 reveal">
+  <div class="gcard" data-img="post1.jpg" data-title="投資觀點" data-desc="把複雜市場講到你聽得懂，風險先行。">
+    <div class="gthumb"><img src="post1.jpg" alt="作品 1"></div>
+    <div class="gmeta">
+      <p class="gtitle">投資觀點</p>
+      <p class="gdesc">把複雜市場講到你聽得懂，風險先行。</p>
+    </div>
   </div>
 
-  <div style="aspect-ratio:1/1; overflow:hidden; border-radius:16px; border:1px solid rgba(255,255,255,.12);">
-    <img src="post2.jpg" style="width:100%; height:100%; object-fit:cover; transition:0.4s;">
+  <div class="gcard" data-img="post2.jpg" data-title="社群經營" data-desc="內容＋互動＋節奏，讓人願意留下來。">
+    <div class="gthumb"><img src="post2.jpg" alt="作品 2"></div>
+    <div class="gmeta">
+      <p class="gtitle">社群經營</p>
+      <p class="gdesc">內容＋互動＋節奏，讓人願意留下來。</p>
+    </div>
   </div>
 
-  <div style="aspect-ratio:1/1; overflow:hidden; border-radius:16px; border:1px solid rgba(255,255,255,.12);">
-    <img src="post3.jpg" style="width:100%; height:100%; object-fit:cover; transition:0.4s;">
+  <div class="gcard" data-img="post3.jpg" data-title="內容創作" data-desc="不是靠靈感，是靠系統穩定輸出。">
+    <div class="gthumb"><img src="post3.jpg" alt="作品 3"></div>
+    <div class="gmeta">
+      <p class="gtitle">內容創作</p>
+      <p class="gdesc">不是靠靈感，是靠系統穩定輸出。</p>
+    </div>
   </div>
+</div>
 
 </div>  
 
@@ -356,6 +508,56 @@
     });
   }, {threshold: 0.12});
   els.forEach(el=>io.observe(el));
+</script>
+  <!-- Lightbox -->
+<div class="lightbox" id="lightbox" aria-hidden="true">
+  <div class="lb-panel">
+    <div class="lb-top">
+      <div class="lb-text">
+        <div class="lb-title" id="lbTitle">作品</div>
+        <div class="lb-desc" id="lbDesc">—</div>
+      </div>
+      <button class="lb-close" id="lbClose">✕ 關閉</button>
+    </div>
+    <div class="lb-imgwrap">
+      <img class="lb-img" id="lbImg" src="" alt="預覽">
+    </div>
+  </div>
+</div>
+
+<script>
+  // Lightbox actions
+  const lb = document.getElementById('lightbox');
+  const lbImg = document.getElementById('lbImg');
+  const lbTitle = document.getElementById('lbTitle');
+  const lbDesc = document.getElementById('lbDesc');
+  const lbClose = document.getElementById('lbClose');
+
+  document.querySelectorAll('.gcard').forEach(card => {
+    card.addEventListener('click', () => {
+      lbImg.src = card.dataset.img;
+      lbTitle.textContent = card.dataset.title || '作品';
+      lbDesc.textContent = card.dataset.desc || '';
+      lb.classList.add('show');
+      lb.setAttribute('aria-hidden', 'false');
+    });
+  });
+
+  function closeLB(){
+    lb.classList.remove('show');
+    lb.setAttribute('aria-hidden', 'true');
+    lbImg.src = '';
+  }
+
+  lbClose.addEventListener('click', closeLB);
+  lb.addEventListener('click', (e) => {
+    // 點到黑色背景才關閉（點圖片不關）
+    if(e.target === lb) closeLB();
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if(e.key === 'Escape' && lb.classList.contains('show')) closeLB();
+  });
 </script>
 </body>
 </html>
